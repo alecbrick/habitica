@@ -5,27 +5,29 @@ let authorUuid = ''; // ... own data is done
 */
 
 /*
- * This migrations will iterate through all groups with a group plan
- * a subscription and resync the free subscription to all members
+ * This migrations will iterate through all groups with a group plan a subscription and resync the free
+ * subscription to all members
  */
 
 import { model as Group } from '../../website/server/models/group';
-import payments from '../../website/server/libs/payments/payments';
+import * as payments from '../../website/server/libs/payments';
 
 async function updateGroupsWithGroupPlans () {
-  const cursor = Group.find({
+  let cursor = Group.find({
     'purchased.plan.planId': 'group_monthly',
     'purchased.plan.dateTerminated': null,
   }).cursor();
 
-  const promises = [];
+  let promises = [];
 
-  cursor.on('data', group => {
+  cursor.on('data', (group) => {
     promises.push(payments.addSubscriptionToGroupUsers(group));
     promises.push(group.save());
   });
 
-  cursor.on('close', async () => Promise.all(promises));
+  cursor.on('close', async () => {
+    return await Promise.all(promises);
+  });
 }
 
-export default updateGroupsWithGroupPlans;
+module.exports = updateGroupsWithGroupPlans;

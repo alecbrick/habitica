@@ -21,6 +21,10 @@ export default function sell (user, req = {}) {
     throw new BadRequest(i18n.t('positiveAmountRequired', req.language));
   }
 
+  if (amount < 0) {
+    throw new BadRequest(i18n.t('positiveAmountRequired', req.language));
+  }
+
   if (!type) {
     throw new BadRequest(i18n.t('typeRequired', req.language));
   }

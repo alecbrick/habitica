@@ -1,5 +1,4 @@
-/* eslint-disable import/no-commonjs */
-require('@babel/register'); // eslint-disable-line import/no-extraneous-dependencies
+require('babel-register');
 
 // This file must use ES5, everything required can be in ES6
 
@@ -18,13 +17,5 @@ function setUpServer () {
 setUpServer();
 
 // Replace this with your migration
-const processUsers = () => {}; // require('').default;
-
-processUsers()
-  .then(() => {
-    process.exit(0);
-  })
-  .catch(err => {
-    console.log(err);
-    process.exit(1);
-  });
+const processUsers = require('./20180125_clean_new_notifications.js');
+processUsers();

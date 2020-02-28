@@ -18,6 +18,12 @@ describe('shared.ops.buyHealthPotion', () => {
     return buyOp.purchase();
   }
 
+  function buyHealthPotion (_user, _req, _analytics) {
+    const buyOp = new BuyHealthPotionOperation(_user, _req, _analytics);
+
+    return buyOp.purchase();
+  }
+
   beforeEach(() => {
     user = generateUser({
       items: {
