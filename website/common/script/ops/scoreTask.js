@@ -201,7 +201,7 @@ function _lastHistoryEntryWasToday (lastHistoryEntry, user) {
   const dateWithTimeZone = moment(lastHistoryEntry.date).zone(timezoneOffset);
   if (dateWithTimeZone.hour() < dayStart) dateWithTimeZone.subtract(1, 'day');
 
-  return moment().zone(timezoneOffset).isSame(dateWithTimeZone, 'day');
+  return moment().utcOffset(timezoneOffset).isSame(dateWithTimeZone, 'day');
 }
 
 function _updateLastHistoryEntry (lastHistoryEntry, task, direction, times) {

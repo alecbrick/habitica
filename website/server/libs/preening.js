@@ -37,7 +37,7 @@ Subscribers and challenges:
  */
 export function preenHistory (history, isSubscribed, timezoneOffset = 0, dayStart = 0) {
   // history = _.filter(history, historyEntry => Boolean(historyEntry)); // Filter missing entries
-  const now = moment().zone(timezoneOffset);
+  const now = moment().utcOffset(timezoneOffset);
   // Date after which to begin compressing data
   const cutOff = now.subtract(isSubscribed ? 365 : 60, 'days').startOf('day');
 

@@ -158,7 +158,7 @@ describe('GET /tasks/user', () => {
       'preferences.dayStart': 0,
       'preferences.timezoneOffset': timezone,
     });
-    const startDate = moment().zone(timezone).subtract('4', 'days').startOf('day')
+    const startDate = moment().utcOffset(timezone).subtract('4', 'days').startOf('day')
       .toISOString();
     await user.post('/tasks/user', [
       {
@@ -186,7 +186,7 @@ describe('GET /tasks/user', () => {
       'preferences.dayStart': 0,
       'preferences.timezoneOffset': timezone,
     });
-    const startDate = moment().zone(timezone).subtract('4', 'days').startOf('day')
+    const startDate = moment().utcOffset(timezone).subtract('4', 'days').startOf('day')
       .toISOString();
     await user.post('/tasks/user', [
       {
@@ -213,7 +213,7 @@ describe('GET /tasks/user', () => {
       'preferences.dayStart': 0,
       'preferences.timezoneOffset': timezone,
     });
-    const startDate = moment().zone(timezone).subtract('4', 'days').startOf('day')
+    const startDate = moment().utcOffset(timezone).subtract('4', 'days').startOf('day')
       .toISOString();
     await user.post('/tasks/user', [
       {
