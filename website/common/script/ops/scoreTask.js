@@ -198,7 +198,7 @@ function _lastHistoryEntryWasToday (lastHistoryEntry, user) {
   const { dayStart } = user.preferences;
 
   // Adjust the last entry date according to the user's timezone and CDS
-  const dateWithTimeZone = moment(lastHistoryEntry.date).zone(timezoneOffset);
+  const dateWithTimeZone = moment(lastHistoryEntry.date).utcOffset(timezoneOffset);
   if (dateWithTimeZone.hour() < dayStart) dateWithTimeZone.subtract(1, 'day');
 
   return moment().utcOffset(timezoneOffset).isSame(dateWithTimeZone, 'day');

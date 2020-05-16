@@ -172,7 +172,7 @@ function resetHabitCounters (user, tasksByType, now, daysMissed) {
       break;
     }
     const thatDay = moment(now)
-      .zone(user.preferences.timezoneOffset + user.preferences.dayStart * 60)
+      .utcOffset(user.preferences.timezoneOffset + user.preferences.dayStart * 60)
       .subtract({ days: i });
     if (thatDay.day() === 1) {
       resetWeekly = true;

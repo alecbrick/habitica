@@ -75,7 +75,7 @@ function updateHabit (habit, timezoneOffset, dayStart) {
         }
       })
       .groupBy(entry => { // group entries by aggregateBy
-        const entryDate = moment(entry.date).zone(timezoneOffset || 0);
+        const entryDate = moment(entry.date).utcOffset(timezoneOffset || 0);
         if (entryDate.hour() < dayStart) entryDate.subtract(1, 'day');
         return entryDate.format('YYYYMMDD');
       })
